@@ -6,16 +6,18 @@ namespace Spaceship;
 public class Ship
 {
     public Vector2 Position = new(100, 100);
-    private float _width = 68;
-    private float _height = 100;
-    private float _speed = 180;
+    private const float Width = 68;
+    private const float Height = 100;
+    private const float Speed = 180;
+    private const float HalfWidth = Width / 2;
+    private const float HalfHeight = Height / 2;
 
-    public Vector2 MiddlePosition => new(Position.X - _width / 2, Position.Y - _height / 2);
+    public Vector2 MiddlePosition => new(Position.X - HalfWidth, Position.Y - HalfHeight);
 
     public void ShipUpdate(KeyboardState keyboardState, GameTime gameTime)
     {
         float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        var positionIncrease = delta * _speed;
+        var positionIncrease = delta * Speed;
         if (keyboardState.IsKeyDown(Keys.Up))
         {
             Position.Y -= positionIncrease;
