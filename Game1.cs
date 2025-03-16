@@ -16,9 +16,9 @@ public class Game1 : Game
     private SpriteFont _gameSprite;
     private SpriteFont _timerSprite;
     
+    private Controller _controller;
     private readonly Ship _player = new Ship();
-    private readonly Asteroid _testAsteroid = new Asteroid(Asteroid.BaseSpeed);
-
+    
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -44,6 +44,7 @@ public class Game1 : Game
         _spaceSprite = Content.Load<Texture2D>("space");
         _gameSprite = Content.Load<SpriteFont>("spaceFont");
         _timerSprite = Content.Load<SpriteFont>("timerFont");
+        _controller = new Controller(_asteroidSprite);
     }
 
     protected override void Update(GameTime gameTime)
@@ -53,7 +54,7 @@ public class Game1 : Game
             Exit();
 
         _player.ShipUpdate(Keyboard.GetState(), gameTime);
-        _testAsteroid.AsteroidUpdate(gameTime);
+        _controller.ControllerUpdate(gameTime);
 
         base.Update(gameTime);
     }
@@ -64,7 +65,7 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
-        _spriteBatch.Draw(_asteroidSprite, _testAsteroid.MiddlePosition, Color.White);
+        _controller.ControllerDrawAsteroids(_spriteBatch);
         _spriteBatch.Draw(_shipSprite, _player.MiddlePosition, Color.White);
         _spriteBatch.End();
 
