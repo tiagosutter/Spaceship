@@ -9,6 +9,13 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    private Texture2D _shipSprite;
+    private Texture2D _asteroidSprite;
+    private Texture2D _spaceSprite;
+
+    private SpriteFont _gameSprite;
+    private SpriteFont _timerSprite;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -27,7 +34,11 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // TODO: use this.Content to load your game content here
+        _shipSprite = Content.Load<Texture2D>("ship");
+        _asteroidSprite = Content.Load<Texture2D>("asteroid");
+        _spaceSprite = Content.Load<Texture2D>("space");
+        _gameSprite = Content.Load<SpriteFont>("spaceFont");
+        _timerSprite = Content.Load<SpriteFont>("timerFont");
     }
 
     protected override void Update(GameTime gameTime)
@@ -45,7 +56,9 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
