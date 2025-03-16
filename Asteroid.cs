@@ -5,7 +5,6 @@ namespace Spaceship;
 
 public class Asteroid
 {
-    public const int BaseSpeed = 250;
     public Vector2 Position;
     private readonly int _speed;
     private const float Radius = 59;

@@ -6,9 +6,10 @@ namespace Spaceship;
 
 public class Controller
 {
-    private const int TimeBetweenAsteroidCreation = 2;
     private List<Asteroid> _asteroids = new();
-    private double _timer = 0;
+    private double _timer = 2;
+    private double _maxTime = 2;
+    private int _nextSpeed = 240;
     private Texture2D _asteroidSprite;
 
     public Controller(Texture2D asteroidSprite)
@@ -21,8 +22,17 @@ public class Controller
         _timer -= gameTime.ElapsedGameTime.TotalSeconds;
         if (_timer <= 0)
         {
-            _asteroids.Add(new Asteroid(Asteroid.BaseSpeed));
-            _timer = TimeBetweenAsteroidCreation;
+            _asteroids.Add(new Asteroid(_nextSpeed));
+            _timer = _maxTime;
+            if (_maxTime > 0.5)
+            {
+                _maxTime -= 0.1;
+            }
+
+            if (_nextSpeed < 720)
+            {
+                _nextSpeed += 4;
+            }
         }
 
         for (var index = 0; index < _asteroids.Count; index++)
