@@ -15,6 +15,8 @@ public class Game1 : Game
 
     private SpriteFont _gameSprite;
     private SpriteFont _timerSprite;
+    
+    private readonly Ship _player = new Ship();
 
     public Game1()
     {
@@ -60,6 +62,7 @@ public class Game1 : Game
 
         _spriteBatch.Begin();
         _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
+        _spriteBatch.Draw(_shipSprite, _player.MiddlePosition, Color.White);
         _spriteBatch.End();
 
         base.Draw(gameTime);
