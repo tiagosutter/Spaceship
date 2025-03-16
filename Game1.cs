@@ -51,7 +51,7 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        _player.ShipUpdate(Keyboard.GetState(), gameTime);
 
         base.Update(gameTime);
     }
