@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Spaceship;
 
@@ -11,6 +12,7 @@ public class Controller
     private double _maxTime = 2;
     private int _nextSpeed = 240;
     private Texture2D _asteroidSprite;
+    public bool InGame = false;
 
     public Controller(Texture2D asteroidSprite)
     {
@@ -19,7 +21,18 @@ public class Controller
 
     public void ControllerUpdate(GameTime gameTime)
     {
-        _timer -= gameTime.ElapsedGameTime.TotalSeconds;
+        if (InGame)
+        {
+            _timer -= gameTime.ElapsedGameTime.TotalSeconds;
+        }
+        else
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Enter))
+            {
+                InGame = true;
+            }
+        }
         if (_timer <= 0)
         {
             _asteroids.Add(new Asteroid(_nextSpeed));

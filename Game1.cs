@@ -13,8 +13,8 @@ public class Game1 : Game
     private Texture2D _asteroidSprite;
     private Texture2D _spaceSprite;
 
-    private SpriteFont _gameSprite;
-    private SpriteFont _timerSprite;
+    private SpriteFont _gameFont;
+    private SpriteFont _timerFont;
     
     private Controller _controller;
     private readonly Ship _player = new Ship();
@@ -42,8 +42,8 @@ public class Game1 : Game
         _shipSprite = Content.Load<Texture2D>("ship");
         _asteroidSprite = Content.Load<Texture2D>("asteroid");
         _spaceSprite = Content.Load<Texture2D>("space");
-        _gameSprite = Content.Load<SpriteFont>("spaceFont");
-        _timerSprite = Content.Load<SpriteFont>("timerFont");
+        _gameFont = Content.Load<SpriteFont>("spaceFont");
+        _timerFont = Content.Load<SpriteFont>("timerFont");
         _controller = new Controller(_asteroidSprite);
     }
 
@@ -53,7 +53,10 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        _player.ShipUpdate(Keyboard.GetState(), gameTime);
+        if (_controller.InGame)
+        {
+            _player.ShipUpdate(Keyboard.GetState(), gameTime);
+        }
         _controller.ControllerUpdate(gameTime);
 
         base.Update(gameTime);
@@ -67,6 +70,15 @@ public class Game1 : Game
         _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
         _controller.ControllerDrawAsteroids(_spriteBatch);
         _spriteBatch.Draw(_shipSprite, _player.MiddlePosition, Color.White);
+
+        if (!_controller.InGame)
+        {
+            string message = "Press Enter to Begin!";
+            Vector2 sizeOfText = _gameFont.MeasureString(message);
+            int halfWidth = _graphics.PreferredBackBufferWidth / 2;
+            _spriteBatch.DrawString(_gameFont, message, new Vector2(halfWidth - sizeOfText.X / 2, 200), Color.White);
+        }
+        
         _spriteBatch.End();
 
         base.Draw(gameTime);

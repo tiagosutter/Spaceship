@@ -5,7 +5,8 @@ namespace Spaceship;
 
 public class Ship
 {
-    public Vector2 Position = new(100, 100);
+    private static readonly Vector2 DefaultPosition = new Vector2(640, 360);
+    public Vector2 Position = DefaultPosition;
     private const float Width = 68;
     private const float Height = 100;
     private const float Speed = 180;
