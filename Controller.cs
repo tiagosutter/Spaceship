@@ -19,7 +19,7 @@ public class Controller
         _asteroidSprite = asteroidSprite;
     }
 
-    public void ControllerUpdate(GameTime gameTime)
+    public void ControllerUpdate(GameTime gameTime, Ship player)
     {
         if (InGame)
         {
@@ -50,7 +50,15 @@ public class Controller
 
         for (var index = 0; index < _asteroids.Count; index++)
         {
-            _asteroids[index].AsteroidUpdate(gameTime);
+            var asteroid = _asteroids[index];
+            asteroid.AsteroidUpdate(gameTime);
+            var sum = asteroid.Radius + Ship.Radius;
+            if (Vector2.Distance(asteroid.Position, player.Position) < sum)
+            {
+                InGame = false;
+                _asteroids.Clear();
+                player.ResetPosition();
+            }
         }
     }    
     

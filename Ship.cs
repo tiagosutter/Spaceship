@@ -7,6 +7,8 @@ public class Ship
 {
     private static readonly Vector2 DefaultPosition = new Vector2(640, 360);
     public Vector2 Position = DefaultPosition;
+    public const int Radius = 30;
+        
     private const float Width = 68;
     private const float Height = 100;
     private const float Speed = 180;
@@ -39,4 +41,6 @@ public class Ship
             Position.X -= positionIncrease;
         }
     }
+
+    public void ResetPosition() => Position = DefaultPosition;
 }

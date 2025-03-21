@@ -7,7 +7,7 @@ public class Asteroid
 {
     public Vector2 Position;
     private readonly int _speed;
-    private const float Radius = 59;
+    public int Radius = 59;
 
     public Asteroid(int speed)
     {

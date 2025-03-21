@@ -57,7 +57,7 @@ public class Game1 : Game
         {
             _player.ShipUpdate(Keyboard.GetState(), gameTime);
         }
-        _controller.ControllerUpdate(gameTime);
+        _controller.ControllerUpdate(gameTime, _player);
 
         base.Update(gameTime);
     }
