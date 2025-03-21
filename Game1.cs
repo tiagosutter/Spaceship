@@ -69,6 +69,7 @@ public class Game1 : Game
         _spriteBatch.Begin();
         _spriteBatch.Draw(_spaceSprite, new Vector2(0, 0), Color.White);
         _controller.ControllerDrawAsteroids(_spriteBatch);
+        _controller.ControllerDrawTime(_spriteBatch, _gameFont);
         _spriteBatch.Draw(_shipSprite, _player.MiddlePosition, Color.White);
 
         if (!_controller.InGame)
