@@ -21,22 +21,22 @@ public class Ship
     {
         float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
         var positionIncrease = delta * Speed;
-        if (keyboardState.IsKeyDown(Keys.Up))
+        if (keyboardState.IsKeyDown(Keys.Up) && Position.Y > 0)
         {
             Position.Y -= positionIncrease;
         }
 
-        if (keyboardState.IsKeyDown(Keys.Right))
+        if (keyboardState.IsKeyDown(Keys.Right) && Position.X < Game1.ScreenWidth)
         {
             Position.X += positionIncrease;
         }
 
-        if (keyboardState.IsKeyDown(Keys.Down))
+        if (keyboardState.IsKeyDown(Keys.Down) && Position.Y < Game1.ScreenHeight)
         {
             Position.Y += positionIncrease;
         }
 
-        if (keyboardState.IsKeyDown(Keys.Left))
+        if (keyboardState.IsKeyDown(Keys.Left) && Position.X > 0)
         {
             Position.X -= positionIncrease;
         }

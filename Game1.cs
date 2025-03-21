@@ -6,6 +6,9 @@ namespace Spaceship;
 
 public class Game1 : Game
 {
+    public static int ScreenWidth = 1280;
+    public static int ScreenHeight = 720;
+
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
@@ -18,7 +21,7 @@ public class Game1 : Game
     
     private Controller _controller;
     private readonly Ship _player = new Ship();
-    
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -28,8 +31,8 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        _graphics.PreferredBackBufferWidth = 1280;
-        _graphics.PreferredBackBufferHeight = 720;
+        _graphics.PreferredBackBufferWidth = ScreenWidth;
+        _graphics.PreferredBackBufferHeight = ScreenHeight;
         _graphics.ApplyChanges();
 
         base.Initialize();
